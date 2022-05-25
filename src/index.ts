@@ -1,14 +1,20 @@
+import 'dotenv/config'
 import express from 'express'
+import userRoutes from "./routes/User.routes";
 
+const PORT = process.env.PORT || 5000
 const app = express()
-const PORT = 5000
+app.use(express.json())
 
-app.listen(PORT, async () => {
-  try {
-    await app.get('/', (req, res) => {
-      res.send('the-first-start-for-test')
-    })
-  } catch (e) {
+app.use('/api', userRoutes)
+
+const start = async () => {
+  app.listen(PORT)
+}
+
+start()
+  .then(() => {
+    console.log(`Server has been started on port ${PORT}`)
+  }, (e) => {
     console.log(e)
-  }
-})
+  })
