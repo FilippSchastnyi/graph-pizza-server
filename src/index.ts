@@ -8,13 +8,11 @@ app.use(express.json())
 
 app.use('/api', userRoutes)
 
-const start = async () => {
-  app.listen(PORT)
-}
-
-start()
-  .then(() => {
+app.listen(PORT, () => {
+  try {
     console.log(`Server has been started on port ${PORT}`)
-  }, (e) => {
+  }
+  catch (e) {
     console.log(e)
-  })
+  }
+})

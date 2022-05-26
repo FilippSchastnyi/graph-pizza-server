@@ -1,11 +1,13 @@
+import userQueries from "../queries/UserQueries";
+
 class UserController {
   async createUser(req, res) {
     const {name, surname} = req.body
-    console.log(name, surname)
-    res.json('ok')
+    await userQueries.createUser(name, surname).then((customer) => res.json(customer.rows[0]))
   }
 
   async getAllUsers(req, res) {
+    await userQueries.getAllUsers().then((customer) => res.json(customer.rows))
   }
 
   async getUser(req, res) {

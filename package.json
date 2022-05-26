@@ -7,9 +7,9 @@
   "author": "p-schastny",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon dist/index.js",
+    "start": "nodemon dist/src/index.js",
     "watch": "tsc -watch",
-    "inspect": "node --inspect dist/index.js"
+    "inspect": "node --inspect dist/src/index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
