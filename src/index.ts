@@ -5,7 +5,7 @@ import DataBase from './../db.config'
 
 const PORT = process.env.PORT || 5000
 const app = express()
-const dataBase = DataBase.initSQL
+const dataBase = DataBase.SQL
 app.use(express.json())
 
 app.use('/api', userRoutes)

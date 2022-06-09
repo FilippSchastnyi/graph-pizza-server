@@ -23,7 +23,7 @@ class DataBase {
   constructor() {
   }
 
-  get initSQL() {
+  get SQL() {
     return new Sequelize(
       this.dbConfig.name,
       this.dbConfig.user,
