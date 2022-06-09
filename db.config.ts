@@ -1,11 +1,40 @@
-import {Pool} from 'pg'
+import {Sequelize} from 'sequelize'
+import {Dialect} from "sequelize/types/sequelize";
 
-const db = new Pool({
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DB_NAME
-})
+export interface IDataBaseSettings {
+  name: string;
+  user: string;
+  password: string;
+  host: string;
+  port: number;
+  dialect: Dialect
+}
 
-export default db;
+class DataBase {
+  private readonly dbConfig: IDataBaseSettings = {
+    name: process.env.DB_NAME!.toString(),
+    user: process.env.DB_USER!.toString(),
+    password: process.env.DB_PASSWORD!.toString(),
+    host: process.env.DB_HOST!.toString(),
+    port: Number(process.env.DB_PORT),
+    dialect: 'postgres'
+  }
+
+  constructor() {
+  }
+
+  get initSQL() {
+    return new Sequelize(
+      this.dbConfig.name,
+      this.dbConfig.user,
+      this.dbConfig.password,
+      {
+        dialect: this.dbConfig.dialect,
+        host: this.dbConfig.host,
+        port: this.dbConfig.port,
+      }
+    )
+  }
+}
+
+export default new DataBase();
