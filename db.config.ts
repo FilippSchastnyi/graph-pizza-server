@@ -31,7 +31,7 @@ class DataBase {
       {
         dialect: this.dbConfig.dialect,
         host: this.dbConfig.host,
-        port: this.dbConfig.port,
+        port: this.dbConfig.port
       }
     )
   }
