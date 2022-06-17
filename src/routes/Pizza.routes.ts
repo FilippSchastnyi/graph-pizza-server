@@ -1,9 +1,11 @@
 import {Router} from 'express'
-import UserController from "../controllers/User.controller";
+import PizzaController from "../controllers/Pizza.controller";
 
 const router = Router()
-const userController = UserController
 
-router.get('/user', userController.getAllUsers)
+router.get('/pizza', PizzaController.checkIsAuth)
+router.post('/pizza', PizzaController.checkIsAuth)
+router.delete('/pizza', PizzaController.checkIsAuth)
+router.put('/pizza', PizzaController.checkIsAuth)
 
 export default router;

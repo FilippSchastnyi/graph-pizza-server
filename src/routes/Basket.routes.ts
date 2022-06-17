@@ -1,9 +1,11 @@
 import {Router} from 'express'
-import UserController from "../controllers/User.controller";
+import BaskedController from "../controllers/Basked.controller";
 
 const router = Router()
-const userController = UserController
 
-router.get('/user', userController.getAllUsers)
+router.get('/basket', BaskedController.checkIsAuth)
+router.post('/basket', BaskedController.checkIsAuth)
+router.delete('/basket', BaskedController.checkIsAuth)
+router.put('/basket', BaskedController.checkIsAuth)
 
 export default router;

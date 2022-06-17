@@ -8,7 +8,7 @@ class UserController {
   }
 
   async checkIsAuth(req, res) {
-    res.json('qwer')
+
   }
 }
 

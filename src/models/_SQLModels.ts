@@ -2,7 +2,7 @@ import basketModel from "./basket.model";
 import basketPizzaModel from "./basketPizza.model";
 import goodsModel from "./goods.model";
 import pizzaModel from "./pizza.model";
-import ratingModel from "./rating.model";
+import rateModel from "./rate.model";
 import userModel from "./user.model";
 
 
@@ -31,15 +31,15 @@ class SQLModels {
     /** Pizza Model Relations**/
     pizzaModel.belongsTo(goodsModel)
     pizzaModel.hasOne(basketPizzaModel)
-    pizzaModel.hasOne(ratingModel)
+    pizzaModel.hasOne(rateModel)
 
     /** Rating Model Relations**/
-    ratingModel.belongsTo(userModel)
-    ratingModel.hasMany(userModel)
+    rateModel.belongsTo(userModel)
+    rateModel.hasMany(userModel)
 
     /** User Model Relations**/
     userModel.hasOne(basketModel)
-    userModel.hasMany(ratingModel)
+    userModel.hasMany(rateModel)
   }
 
   createTables = async () => {
@@ -47,7 +47,7 @@ class SQLModels {
     await basketPizzaModel.sync()
     await goodsModel.sync()
     await pizzaModel.sync()
-    await ratingModel.sync()
+    await rateModel.sync()
     await userModel.sync()
   }
 
