@@ -23,7 +23,7 @@ class DataBase {
   constructor() {
   }
 
-  get initSQL() {
+  get SQL() {
     return new Sequelize(
       this.dbConfig.name,
       this.dbConfig.user,
@@ -31,9 +31,17 @@ class DataBase {
       {
         dialect: this.dbConfig.dialect,
         host: this.dbConfig.host,
-        port: this.dbConfig.port,
+        port: this.dbConfig.port
       }
     )
+  }
+
+  openSQLConnection() {
+    return this.SQL.authenticate()
+  }
+
+  closeSQLConnection() {
+    return this.SQL.close()
   }
 }
 
