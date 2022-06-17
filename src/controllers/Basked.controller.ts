@@ -1,4 +1,4 @@
-class UserController {
+class BasketController {
   async registration(req, res) {
 
   }
@@ -8,8 +8,8 @@ class UserController {
   }
 
   async checkIsAuth(req, res) {
-    res.json('qwer')
+
   }
 }
 
-export default new UserController();
+export default new BasketController();

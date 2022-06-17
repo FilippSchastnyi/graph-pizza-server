@@ -1,9 +1,11 @@
 import {Router} from 'express'
-import UserController from "../controllers/User.controller";
+import GoodsController from "../controllers/Goods.controller";
 
 const router = Router()
-const userController = UserController
 
-router.get('/user', userController.getAllUsers)
+router.get('/goods', GoodsController.checkIsAuth)
+router.post('/goods', GoodsController.checkIsAuth)
+router.delete('/goods', GoodsController.checkIsAuth)
+router.put('/goods', GoodsController.checkIsAuth)
 
 export default router;
