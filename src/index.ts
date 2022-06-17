@@ -1,15 +1,18 @@
 import 'dotenv/config'
 import express from 'express'
-import userRoutes from "./routes/User.routes";
+import cors from 'cors';
 import DataBase from "../db.config";
 import SQLModels from "./models/_SQLModels";
 
 
 const PORT = process.env.PORT || 5000
 const app = express()
-app.use(express.json())
 
-app.use('/api', userRoutes)
+app.use(cors())
+app.use(express.json())
+app.use('/', (req, res) => {
+  res.status(200).json({message: 'ok'})
+})
 
 const startServer = async () => {
   await DataBase.openSQLConnection()
@@ -21,6 +24,6 @@ const startServer = async () => {
 }
 
 startServer()
-  .catch((error)=>{
+  .catch((error) => {
     console.log(error)
   })

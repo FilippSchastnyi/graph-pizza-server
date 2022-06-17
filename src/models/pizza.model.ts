@@ -1,7 +1,7 @@
-import sequelize from './../../db.config'
+import DataBase from './../../db.config'
 import {DataTypes} from 'sequelize'
 
-const pizzaModel = sequelize.SQL.define('pizza', {
+const pizzaModel = DataBase.SQL.define('pizza', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   name: {type: DataTypes.STRING, allowNull: false, unique: true},
   price: {type: DataTypes.STRING},

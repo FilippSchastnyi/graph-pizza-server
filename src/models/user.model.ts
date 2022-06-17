@@ -1,8 +1,8 @@
-import sequelize from '../../db.config'
+import DataBase from '../../db.config'
 import {DataTypes} from "sequelize";
 import roles from "./roles.model";
 
-const userModel = sequelize.SQL.define('user', {
+const userModel = DataBase.SQL.define('user', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   email: {type: DataTypes.STRING, unique: true},
   password: {type: DataTypes.STRING},
@@ -11,6 +11,4 @@ const userModel = sequelize.SQL.define('user', {
   }
 })
 
-
-
-export default userModel
+export default userModel;

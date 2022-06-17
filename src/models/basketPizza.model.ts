@@ -1,10 +1,8 @@
-import sequelize from "../../db.config";
+import DataBase from "../../db.config";
 import {DataTypes} from "sequelize";
 
-const basketPizzaModel = sequelize.SQL.define('basket', {
+const basketPizzaModel = DataBase.SQL.define('basket', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
   })
-
-
 
 export default basketPizzaModel
