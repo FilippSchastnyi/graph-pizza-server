@@ -35,6 +35,14 @@ class DataBase {
       }
     )
   }
+
+  openSQLConnection() {
+    return this.SQL.authenticate()
+  }
+
+  closeSQLConnection() {
+    return this.SQL.close()
+  }
 }
 
 export default new DataBase();
