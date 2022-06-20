@@ -1,4 +1,5 @@
 class UserController {
+
   async registration(req, res) {
 
   }
@@ -7,8 +8,9 @@ class UserController {
 
   }
 
-  async checkIsAuth(req, res) {
-    res.json('qwer')
+  async checkIsAuthentication(req, res) {
+    const {id} = req.query
+    res.json(id)
   }
 }
 

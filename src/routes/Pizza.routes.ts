@@ -3,9 +3,9 @@ import PizzaController from "../controllers/Pizza.controller";
 
 const router = Router()
 
-router.get('/pizza', PizzaController.checkIsAuth)
-router.post('/pizza', PizzaController.checkIsAuth)
-router.delete('/pizza', PizzaController.checkIsAuth)
-router.put('/pizza', PizzaController.checkIsAuth)
+router.get('/pizza', PizzaController.getAll)
+router.post('/pizza', PizzaController.getAll)
+router.delete('/pizza', PizzaController.getAll)
+router.put('/pizza', PizzaController.getAll)
 
 export default router;
