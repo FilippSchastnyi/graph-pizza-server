@@ -1,15 +1,13 @@
 class UserController {
-  async registration(req, res) {
+
+  async getAll(req, res) {
 
   }
 
-  async login(req, res) {
+  async getOne(req, res) {
 
   }
 
-  async checkIsAuth(req, res) {
-
-  }
 }
 
 export default new UserController();
