@@ -1,3 +1,6 @@
+import ApiErrors from "../handlers/ApiErrors";
+
+
 class UserController {
 
   async registration(req, res) {
@@ -8,8 +11,12 @@ class UserController {
 
   }
 
-  async checkIsAuthentication(req, res) {
-    const {id} = req.query
+  async checkIsAuthentication(req, res, next) {
+     const {id} = req.query
+    if (!id){
+      next(ApiErrors.badRequest('Please, provide an id'))
+      return null
+    }
     res.json(id)
   }
 }

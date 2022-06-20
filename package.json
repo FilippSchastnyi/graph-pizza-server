@@ -12,12 +12,16 @@
     "inspect": "node --inspect dist/src/index.js"
   },
   "dependencies": {
+    "@types/express-fileupload": "^1.2.2",
+    "@types/uuid": "^8.3.4",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.19.2"
+    "sequelize": "^6.19.2",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
