@@ -8,7 +8,6 @@ import fileUpload from "express-fileupload";
 import errorHandler from "./middleware/ErrorHandlingMiddleware";
 import path from "path";
 
-
 const PORT = process.env.PORT || 5000
 const app = express()
 
