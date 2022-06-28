@@ -3,34 +3,58 @@ import userModel from "../models/user.model";
 import UserModel from "../models/user.model";
 import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken'
+import {Model} from "sequelize";
 
+
+const generateJWT = (id: string, email: string, role: string) => {
+  return jwt.sign({
+      id,
+      email,
+      role
+    },
+    `${process.env.JWT_KEY}`,
+    {expiresIn: '12h'})
+}
 
 class UserController {
 
   async registration(req, res, next) {
     const {email, password, role} = req.body
-    if (!email || !password) {
-      return next(ApiErrors.badRequest('Incorrect email or password. Please, try again'))
-    }
+    const isEmailExist = !!await userModel.findOne({where: {email}})
+    const hashPassword = await bcrypt.hash(password, 5)
 
-    const isEmailExist = await userModel.findOne({where: {email}})
+    if (!email || !password) {
+      return next(ApiErrors.badRequest('Incorrect email or password.')) //:TODO
+    }
 
     if (isEmailExist) {
-      return next(ApiErrors.badRequest("This email address is already in use. Please, try again"))
+      return next(ApiErrors.badRequest("This email address is already in use."))
     }
-    const hashPassword = await bcrypt.hash(password, 5)
+
     const user: any = await UserModel.create({
-      email, role, password: hashPassword
+      email,
+      role,
+      password: hashPassword
     })
-    const token = jwt.sign({id: user.id, email, role},
-      `${process.env.JWT_KEY}`,
-      {expiresIn: '12h'})
+    const token = generateJWT(user.id, email, role)
+
     return res.json({token})
   }
 
   async login(req, res, next) {
     const {email, password} = req.body
-    const isEmailExist = userModel.findOne({where: email})
+    const user: any = await userModel.findOne({where: {email}})
+    if (!user) {
+      return next(ApiErrors.badRequest("This email address doesn't exist."))
+    }
+
+    const isPasswordMatch = bcrypt.compareSync(password, user.password)
+    if (!isPasswordMatch){
+      return next(ApiErrors.badRequest("This password doesn't match."))
+    }
+
+    const token = generateJWT(user.id, user.email, user.role)
+    return res.json({token})
   }
 
   async checkIsAuthentication(req, res, next) {
