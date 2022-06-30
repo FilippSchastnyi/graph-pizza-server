@@ -3,8 +3,6 @@ import userModel from "../models/user.model";
 import UserModel from "../models/user.model";
 import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken'
-import {Model} from "sequelize";
-
 
 const generateJWT = (id: string, email: string, role: string) => {
   return jwt.sign({
@@ -57,13 +55,9 @@ class UserController {
     return res.json({token})
   }
 
-  async checkIsAuthentication(req, res, next) {
-    const {id} = req.query
-    if (!id) {
-      next(ApiErrors.badRequest('Please, provide an id'))
-      return null
-    }
-    res.json(id)
+  async isAuthenticated(req, res, next) {
+    const token = generateJWT(req.user.id, req.user.email, req.user.role)
+    return res.json({token})
   }
 }
 
