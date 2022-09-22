@@ -12,45 +12,44 @@ class SQLModels {
 
   initModels = async () => {
     this.setRelations();
-    this.createTables()
+    this.syncTables()
       .catch((e)=>{console.log(e)})
   }
 
   setRelations = (): void => {
-    /** Basket Model Relations**/
+/*    /!** Basket Model Relations**!/
     basketModel.belongsTo(userModel)
     basketModel.hasOne(basketPizzaModel)
 
-    /** BasketPizza Model Relations**/
+    /!** BasketPizza Model Relations**!/
     basketPizzaModel.hasMany(pizzaModel)
     basketPizzaModel.belongsTo(basketModel)
 
-    /** Goods Model Relations**/
+    /!** Goods Model Relations**!/
     goodsModel.hasMany(pizzaModel)
 
-    /** Pizza Model Relations**/
+    /!** Pizza Model Relations**!/
     pizzaModel.belongsTo(goodsModel)
     pizzaModel.hasOne(basketPizzaModel)
     pizzaModel.hasOne(rateModel)
 
-    /** Rating Model Relations**/
+    /!** Rating Model Relations**!/
     rateModel.belongsTo(userModel)
     rateModel.hasMany(userModel)
 
-    /** User Model Relations**/
+    /!** User Model Relations**!/
     userModel.hasOne(basketModel)
-    userModel.hasMany(rateModel)
+    userModel.hasMany(rateModel)*/
   }
 
-  createTables = async () => {
-    await basketModel.sync()
+  syncTables = async () => {
+/*    await basketModel.sync()
     await basketPizzaModel.sync()
     await goodsModel.sync()
     await pizzaModel.sync()
-    await rateModel.sync()
+    await rateModel.sync()*/
     await userModel.sync()
   }
-
 }
 
 export default new SQLModels()

@@ -3,8 +3,8 @@ import PizzaController from "../controllers/Pizza.controller";
 
 const router = Router()
 
-router.get('/pizza', PizzaController.getAll)
-router.post('/pizza', PizzaController.getAll)
+router.get('/', PizzaController.getAll)
+router.post('/', PizzaController.createOne)
 router.delete('/pizza', PizzaController.getAll)
 router.put('/pizza', PizzaController.getAll)
 
