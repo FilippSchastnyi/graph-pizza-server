@@ -12,7 +12,7 @@ class SQLModels {
 
   initModels = async () => {
     this.setRelations();
-    this.createTables()
+    this.syncTables()
       .catch((e)=>{console.log(e)})
   }
 
@@ -42,12 +42,12 @@ class SQLModels {
     userModel.hasMany(rateModel)*/
   }
 
-  createTables = async () => {
-    await basketModel.sync()
+  syncTables = async () => {
+/*    await basketModel.sync()
     await basketPizzaModel.sync()
     await goodsModel.sync()
     await pizzaModel.sync()
-    await rateModel.sync()
+    await rateModel.sync()*/
     await userModel.sync()
   }
 }

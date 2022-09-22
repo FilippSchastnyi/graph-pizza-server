@@ -21,9 +21,9 @@ app.use('/api', router)
 app.use(errorHandler)
 
 const startServer = async () => {
-  await DataBase.openSQLConnection()
+  await DataBase.connection.open
   await SQLModels.initModels()
-  await DataBase.closeSQLConnection()
+  await DataBase.connection.close
   await app.listen(PORT, () => {
     console.log(`Server has been started on port ${PORT}`)
   })

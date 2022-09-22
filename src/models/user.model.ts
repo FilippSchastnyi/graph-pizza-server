@@ -2,7 +2,7 @@ import DataBase from '../../db.config'
 import {DataTypes} from "sequelize";
 import roles from "./roles.model";
 
-const userModel = DataBase.SQL.define('user', {
+const userModel = DataBase.sequelize.define('user', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   email: {type: DataTypes.STRING, unique: true},
   password: {type: DataTypes.STRING},

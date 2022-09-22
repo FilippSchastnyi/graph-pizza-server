@@ -23,7 +23,7 @@ class DataBase {
   constructor() {
   }
 
-  get SQL() {
+  get sequelize() {
     return new Sequelize(
       this.dbConfig.name,
       this.dbConfig.user,
@@ -36,12 +36,11 @@ class DataBase {
     )
   }
 
-  openSQLConnection() {
-    return this.SQL.authenticate()
-  }
-
-  closeSQLConnection() {
-    return this.SQL.close()
+  get connection() {
+    return {
+      open: this.sequelize.authenticate(),
+      close: this.sequelize.close()
+    }
   }
 }
 

@@ -15,7 +15,6 @@ const generateJWT = (id: string, email: string, role: string) => {
 }
 
 class UserController {
-
   async registration(req, res, next) {
     const {email, password, role} = req.body
     const isEmailExist = !!await userModel.findOne({where: {email}})
