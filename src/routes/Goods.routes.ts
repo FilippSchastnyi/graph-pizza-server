@@ -3,9 +3,7 @@ import GoodsController from "../controllers/Goods.controller";
 
 const router = Router()
 
-router.get('/goods', GoodsController.getAll)
-router.post('/goods', GoodsController.getAll)
-router.delete('/goods', GoodsController.getAll)
-router.put('/goods', GoodsController.getAll)
+router.get('/', GoodsController.getAll)
+router.post('/', GoodsController.createGoods)
 
 export default router;

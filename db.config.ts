@@ -1,4 +1,4 @@
-import {Sequelize} from 'sequelize'
+import {Sequelize, SyncOptions} from 'sequelize'
 import {Dialect} from "sequelize/types/sequelize";
 
 export interface IDataBaseSettings {
@@ -7,7 +7,8 @@ export interface IDataBaseSettings {
   password: string;
   host: string;
   port: number;
-  dialect: Dialect
+  dialect: Dialect;
+  sync: SyncOptions
 }
 
 class DataBase {
@@ -17,7 +18,8 @@ class DataBase {
     password: process.env.DB_PASSWORD!.toString(),
     host: process.env.DB_HOST!.toString(),
     port: Number(process.env.DB_PORT),
-    dialect: 'postgres'
+    dialect: 'postgres',
+    sync: {force: true}
   }
 
   constructor() {
@@ -31,7 +33,8 @@ class DataBase {
       {
         dialect: this.dbConfig.dialect,
         host: this.dbConfig.host,
-        port: this.dbConfig.port
+        port: this.dbConfig.port,
+        sync: this.dbConfig.sync
       }
     )
   }
