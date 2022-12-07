@@ -1,39 +1,33 @@
 import goodsModel from "./goods.model";
-import goodsSpecificationModel from "./goods-specification.model";
-import goodsCategoryModel from "./goods-category.model";
-import sizeModel from "./size.model";
-import goodsSizeModel from "./goods-size.model";
+import specificationModel from "./specification.model";
+import categoryModel from "./category.model";
+import { info } from "console";
 
 class SQLModels {
   constructor() {
   }
 
-  initModels = async () => {
-    this.syncTables()
-      .catch((e) => {
-        console.log(e)
-      })
+  initModels = () => {
     this.setRelations();
+    this.syncTables()
   }
 
-  setRelations = (): void => {
+   setRelations() {
     /** Goods Model Model Relations**/
-    goodsModel.hasOne(goodsSpecificationModel)
-    goodsSpecificationModel.belongsTo(goodsModel)
 
-    goodsModel.belongsToMany(sizeModel, {through: goodsSizeModel})
-    sizeModel.belongsToMany(goodsModel, {through: goodsSizeModel})
+    specificationModel.belongsTo(goodsModel)
+    goodsModel.hasMany(specificationModel, {
+      as: "info"
+    })
 
-    goodsModel.hasMany(goodsCategoryModel)
-    goodsCategoryModel.belongsTo(goodsModel)
+    categoryModel.hasMany(goodsModel)
+    goodsModel.belongsTo(categoryModel)
   }
 
-  syncTables = async () => {
-        await goodsModel.sync()
-        await goodsSpecificationModel.sync()
-        await sizeModel.sync()
-        await goodsCategoryModel.sync()
-        await goodsSizeModel.sync()
+  syncTables = () => {
+    specificationModel.sync()
+    goodsModel.sync()
+    categoryModel.sync()
   }
 }
 
